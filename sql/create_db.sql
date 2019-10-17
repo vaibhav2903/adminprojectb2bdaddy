@@ -4,6 +4,11 @@ CREATE TABLE `b2bdaddy`.`status` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `status_name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`));
+  
+
+  ALTER TABLE `b2bdaddy`.`status` 
+ADD COLUMN `created_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP AFTER `status_name`,
+ADD COLUMN `updated_at` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP AFTER `created_at`;
 
 CREATE TABLE `b2bdaddy`.`product_categories` (
   `category_id` INT(11) NOT NULL AUTO_INCREMENT,
