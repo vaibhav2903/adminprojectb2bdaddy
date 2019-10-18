@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity(name = "product_categories")
 public class ProductCategory implements Serializable {
 
@@ -29,5 +33,49 @@ public class ProductCategory implements Serializable {
 	private int categoryLevel;
 	@Column(name = "category_status")
 	private int categoryStatus;
+
+	public long getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(long categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public String getCategoryName() {
+		return categoryName;
+	}
+
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+
+	public long getCategoryParentId() {
+		return categoryParentId;
+	}
+
+	public void setCategoryParentId(long categoryParentId) {
+		this.categoryParentId = categoryParentId;
+	}
+
+	public int getCategoryLevel() {
+		return categoryLevel;
+	}
+
+	public void setCategoryLevel(int categoryLevel) {
+		this.categoryLevel = categoryLevel;
+	}
+
+	public int getCategoryStatus() {
+		return categoryStatus;
+	}
+
+	public void setCategoryStatus(int categoryStatus) {
+		this.categoryStatus = categoryStatus;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 }
