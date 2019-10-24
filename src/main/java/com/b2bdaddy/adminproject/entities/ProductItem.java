@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class ProductItem implements Serializable {
 
 	/**

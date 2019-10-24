@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,15 +16,16 @@ import com.b2bdaddy.adminproject.entities.ProductCategoryTree;
 import com.b2bdaddy.adminproject.repository.ProductCategoryRepository;
 import com.b2bdaddy.adminproject.service.ProductCategoryService;
 
-@RestController("/categories")
+@RestController
+@RequestMapping("/categories")
 public class ProductCategoryController {
 
 	private ProductCategoryService productCategoryService;
 	private ProductCategoryRepository productCategoryRepo;
 
 	@Autowired
-	public ProductCategoryController(
-			@Qualifier("productcategoryservice") ProductCategoryService productCategoryService,ProductCategoryRepository productCategoryRepo) {
+	public ProductCategoryController(ProductCategoryService productCategoryService,
+			ProductCategoryRepository productCategoryRepo) {
 		this.productCategoryService = productCategoryService;
 		this.productCategoryRepo = productCategoryRepo;
 	}
@@ -45,7 +47,12 @@ public class ProductCategoryController {
 
 	@DeleteMapping("/productCategories")
 	public void deleteProductCategory(@RequestParam long categoryId) {
-		productCategoryRepo.deleteByCategoryId(categoryId);
+		// productCategoryRepo.deleteByCategoryId(categoryId);
 		return;
+	}
+	
+	@GetMapping("/clearCache")
+	public void clearCache() {
+		productCategoryService.clearCategoryTree();
 	}
 }

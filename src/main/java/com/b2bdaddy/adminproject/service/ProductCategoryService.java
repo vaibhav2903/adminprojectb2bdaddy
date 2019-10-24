@@ -1,7 +1,6 @@
 package com.b2bdaddy.adminproject.service;
 
 import java.util.List;
-import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -18,6 +17,9 @@ public class ProductCategoryService {
 
 	private static ApplicationContext applicationContext;
 
+	@Autowired
+	ProductCategoryRepository repo;
+
 	private static ProductCategoryTree<ProductCategory> rootProductCategoryTree;
 
 	public final ProductCategoryTree<ProductCategory> getRootProductCategoryTree() {
@@ -33,8 +35,8 @@ public class ProductCategoryService {
 
 		ProductCategoryTree<ProductCategory> rootProductCategory = new ProductCategoryTree<ProductCategory>(
 				rootCategory);
-		List<ProductCategory> categories = ((ProductCategoryRepository) applicationContext
-				.getBean("productcategoryrepository")).findAll();
+		ProductCategoryRepository productrepo = ((ProductCategoryRepository) applicationContext.getBean("productrepo"));
+		List<ProductCategory> categories = productrepo.findAll();
 
 		for (ProductCategory productCategory : categories) {
 			if (productCategory.getCategoryParentId() == 1) {
@@ -50,6 +52,8 @@ public class ProductCategoryService {
 	}
 
 	public void clearCategoryTree() {
+		List<ProductCategory> categories = repo.findAll();
+		System.out.println(categories.toString());
 		getProductCategoryTree();
 	}
 
